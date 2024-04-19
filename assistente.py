@@ -1,32 +1,27 @@
 import nltk
 import speech_recognition as sr
 
-def escutar_comando():
-    reconhecer = sr.Recognizer()
+def ouvir_microfone():
+    # Crie um objeto reconhecedor
+    recognizer = sr.Recognizer()
 
+    # Use o microfone como fonte de entrada de áudio
     with sr.Microphone() as source:
-        reconhecer.pause_threshold = 1
-        reconhecer.adjust_for_ambient_noise(source)
-
-        print("Me faça um pedido!")
-        audio = reconhecer.listen(source)
+        print("Por favor, fale algo...")
+        # Ajuste automaticamente o nível de ruído para o ambiente
+        recognizer.adjust_for_ambient_noise(source)
+        # Ouça o áudio do microfone
+        audio = recognizer.listen(source)
 
     try:
-        comando = reconhecer.recognize_google(audio, language="pt-BR")
-        print("Comando reconhecido", comando)
-        executar_comando(comando)
+        print("Reconhecendo...")
+        # Use o Google Speech Recognition para converter o áudio em texto
+        texto = recognizer.recognize_google(audio, language='pt-BR')
+        print("Você disse:", texto)
     except sr.UnknownValueError:
-        print("Comando não reconhecido")
-    except sr.RequestError:
-        print("Não foi possível acessar o serviço de reconhecimento de voz.")
+        print("Não foi possível entender o áudio.")
+    except sr.RequestError as e:
+        print("Erro ao solicitar resultados do serviço de reconhecimento de fala; {0}".format(e))
 
-def executar_comando(comando):
-    ...
-
-def main():
-    while True:
-        escutar_comando()
-
-#método principal
 if __name__ == "__main__":
-    ...
+    ouvir_microfone()
