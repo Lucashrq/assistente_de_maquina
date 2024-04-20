@@ -18,6 +18,10 @@ def ouvir_microfone():
         # Use o Google Speech Recognition para converter o áudio em texto
         texto = recognizer.recognize_google(audio, language='pt-BR')
         print("Você disse:", texto)
+
+        if "Qual é o seu nome" in texto:
+            print("Olá, me chamo Jarvis")
+        
     except sr.UnknownValueError:
         print("Não foi possível entender o áudio.")
     except sr.RequestError as e:
