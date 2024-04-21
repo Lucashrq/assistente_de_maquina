@@ -1,0 +1,9 @@
+{
+    "comandos": {
+        "Qual é o seu nome": "nome_assistente",
+        "Temperatura do computador": "obter_temperatura_computador",
+        "Porcentagem de processamento": "porcentagem_processamento",
+        "Tempo de uso instagram": "tempo_uso_software",
+        "Dispositivos de entrada conectados": "dispositivos_entrada_conectados"
+    }
+}
